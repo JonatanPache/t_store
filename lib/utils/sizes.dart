@@ -15,7 +15,6 @@ class TSizes {
   static const double iconLg = 32.0;
   // static const double iconXl = 32.0;
 
-
   static const double buttonElevation = 4.0;
 
   // app bar height
@@ -50,5 +49,15 @@ class TSizes {
   static const double cardRadiusLg = 16.0;
   static const double cardRadiusMd = 12.0;
   static const double cardRadiusSm = 10.0;
+  static const double cardRadiusXs = 6.0;
+  static const double cardElevation = 2.0;
 
+  // image carousel height
+  static const double imageCarouselHeight = 200.0;
+
+  // loading indicator size
+  static const double loadingIndicatorSize = 36.0;
+
+  // grid view height
+  static const double gridViewSpacing = 16.0;
 }

@@ -20,9 +20,11 @@ class TGridLayout extends StatelessWidget {
         padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: mainAxisExtent,
-            mainAxisSpacing: TSizes.lg),
+          crossAxisCount: 2,
+          mainAxisExtent: mainAxisExtent,
+          mainAxisSpacing: TSizes.gridViewSpacing,
+          crossAxisSpacing: TSizes.gridViewSpacing,
+        ),
         itemBuilder: itemBuilder);
   }
 }
