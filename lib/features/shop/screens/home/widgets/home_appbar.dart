@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/colors.dart';
+import 'package:t_store/utils/colors.dart';
 import 'package:t_store/common/cart_menu_icon.dart';
 import 'package:t_store/common/t_appbar.dart';
 

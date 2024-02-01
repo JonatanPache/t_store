@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/colors.dart';
-import 'package:t_store/help.dart';
+import 'package:t_store/utils/colors.dart';
+import 'package:t_store/utils/help.dart';
+import 'package:t_store/utils/device_utility.dart';
 import 'package:t_store/utils/sizes.dart';
 
 class TAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -45,5 +46,5 @@ class TAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => throw UnimplementedError();
+  Size get preferredSize => Size.fromHeight(TDeviceUtility.getAppBarHeight());
 }

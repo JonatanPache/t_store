@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/colors.dart';
+import 'package:t_store/utils/colors.dart';
 import 'package:t_store/common/style/shadows.dart';
 import 'package:t_store/common/widgets/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/t_circular_icon.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
-import 'package:t_store/help.dart';
+import 'package:t_store/utils/help.dart';
 import 'package:t_store/utils/sizes.dart';
 
 class TProductCardVertical extends StatelessWidget {
