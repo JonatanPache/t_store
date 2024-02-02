@@ -94,7 +94,6 @@ class THelperFunctions {
       wrappedList.add(Row(
         children: rowChildren,
       ));
-
     }
     return wrappedList;
   }
