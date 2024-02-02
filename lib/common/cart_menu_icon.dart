@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/utils/colors.dart';
+import 'package:t_store/utils/constants/colors.dart';
 
 class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({

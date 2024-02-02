@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/utils/colors.dart';
-import 'package:t_store/utils/sizes.dart';
+import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/constants/sizes.dart';
 
 class TVerticalImageText extends StatelessWidget {
   const TVerticalImageText({

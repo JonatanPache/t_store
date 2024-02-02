@@ -4,7 +4,7 @@ import 'package:t_store/common/widgets/image_text_widgets/vertical_image_text.da
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_categories.dart';
-import 'package:t_store/utils/sizes.dart';
+import 'package:t_store/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

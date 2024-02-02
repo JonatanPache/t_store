@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/utils/colors.dart';
-import 'package:t_store/utils/help.dart';
-import 'package:t_store/utils/sizes.dart';
+import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/helpers/helper_functions.dart';
+import 'package:t_store/utils/constants/sizes.dart';
 
 class TSearchContainer extends StatelessWidget {
   const TSearchContainer({
