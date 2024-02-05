@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-class TDeviceUtility {
-  TDeviceUtility._();
+class TDeviceUtils {
+  TDeviceUtils._();
 
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
