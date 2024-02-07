@@ -1,6 +1,7 @@
 class TTexts{
 
-  static const String and ="and";
+  static const String and = "and";
+  static const String done = "Done";
 
 
   static const String submit ="Submit";
