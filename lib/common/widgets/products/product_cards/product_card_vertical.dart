@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/common/styles/shadows.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/common/style/shadows.dart';
 import 'package:t_store/common/widgets/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/t_circular_icon.dart';

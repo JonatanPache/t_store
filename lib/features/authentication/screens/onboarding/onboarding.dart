@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:t_store/features/authentication/controllers.onboarding/onboarding_controller.dart';
-import 'package:t_store/features/authentication/screens/widgets/onboarding_dot_navigation.dart';
-import 'package:t_store/features/authentication/screens/widgets/onboarding_next_button.dart';
-import 'package:t_store/features/authentication/screens/widgets/onboarding_page.dart';
-import 'package:t_store/features/authentication/screens/widgets/onboarding_skip.dart';
+import 'package:t_store/features/authentication/screens/onboarding/widgets/onboarding_dot_navigation.dart';
+import 'package:t_store/features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
+import 'package:t_store/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
+import 'package:t_store/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 
@@ -24,18 +22,18 @@ class OnBoardingScreen extends StatelessWidget {
           children: const [
             OnBoardingPage(
               image: TImages.onBoardingImage1,
-              title: TText.onBoardingTitle1,
-              subTitle: TText.onBoardingSubTitle1,
+              title: TTexts.onBoardingTitle1,
+              subTitle: TTexts.onBoardingSubTitle1,
             ),
             OnBoardingPage(
               image: TImages.onBoardingImage2,
-              title: TText.onBoardingTitle2,
-              subTitle: TText.onBoardingSubTitle2,
+              title: TTexts.onBoardingTitle2,
+              subTitle: TTexts.onBoardingSubTitle2,
             ),
             OnBoardingPage(
               image: TImages.onBoardingImage3,
-              title: TText.onBoardingTitle3,
-              subTitle: TText.onBoardingSubTitle3,
+              title: TTexts.onBoardingTitle3,
+              subTitle: TTexts.onBoardingSubTitle3,
             ),
           ],
         ),
