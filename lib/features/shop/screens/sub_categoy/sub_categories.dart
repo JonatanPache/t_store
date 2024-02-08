@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/common/t_appbar.dart';
+import 'package:t_store/common/widgets/appbar/t_appbar.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_horizontal.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';

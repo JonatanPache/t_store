@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -7,7 +8,7 @@ class TSearchContainer extends StatelessWidget {
   const TSearchContainer({
     super.key,
     required this.text,
-    this.icon = Icons.search,
+    this.icon = Iconsax.search_normal,
     this.showBackground = true,
     this.showBorder = true, this.onTap,
   });

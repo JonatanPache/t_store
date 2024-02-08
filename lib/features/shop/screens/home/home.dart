@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/common/search_container.dart';
-import 'package:t_store/common/widgets/image_text_widgets/vertical_image_text.dart';
+import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:t_store/features/shop/screens/home/widgets/promo_slider.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,39 +18,56 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             // Header
-
-            // App bar
-            THomeAppBar(),
-            SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-
-            // searchbar
-            TSearchContainer(text: 'Search in store'),
-            SizedBox(
-              height: TSizes.spaceBtwSections,
-            ),
-
-            // categories
-            Padding(
-              padding: EdgeInsets.only(left: TSizes.defaultSpace),
+            TPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  //  heading
-                  TSectionHeading(
-                    title: 'Popular Categories',
-                    showActionButton: false,
-                    textColor: Colors.white,
-                  ),
+                  // App bar
+                  THomeAppBar(),
                   SizedBox(
-                    height: TSizes.spaceBtwItems,
+                    height: TSizes.spaceBtwSections,
+                  ),
+
+                  // searchbar
+                  TSearchContainer(text: 'Search in store'),
+                  SizedBox(
+                    height: TSizes.spaceBtwSections,
                   ),
 
                   // categories
-                  THomeCategories()
+                  Padding(
+                    padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                    child: Column(
+                      children: [
+                        //  heading
+                        TSectionHeading(
+                          title: 'Popular Categories',
+                          showActionButton: false,
+                          textColor: Colors.white,
+                        ),
+                        SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+
+                        // categories
+                        THomeCategories()
+                      ],
+                    ),
+                  )
                 ],
               ),
-            )
+            ),
+
+            // body
+            Padding(
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              child: TPromoSlider(
+                banners: [
+                  TImages.promoBanner1,
+                  TImages.promoBanner2,
+                  TImages.promoBanner3,
+                ],
+              ),
+            ),
           ],
         ),
       ),

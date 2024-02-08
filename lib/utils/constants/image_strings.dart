@@ -19,4 +19,13 @@ class TImages {
   static const deliveryInPlaneIllustration = "assets/images/on_boarding_images/instrument_store.gif";
   static const deliveryEmailIllustration = "assets/images/animations/email_animation.gif";
   static const verifyIllustration = "assets/images/animations/verify.gif";
+
+
+  static const guitarIcon = "assets/icons/categories/guitar.png";
+  static const bassIcon = "assets/icons/categories/bass.png";
+
+
+  static const promoBanner1 = "assets/images/banners/fender_telecaster.png";
+  static const promoBanner2 = "assets/images/banners/gibson_flying_v.png";
+  static const promoBanner3 = "assets/images/banners/gibson_sg.png";
 }

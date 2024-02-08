@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/image_text_widgets/vertical_image_text.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 
 class THomeCategories extends StatelessWidget {
   const THomeCategories({super.key});
@@ -13,7 +14,7 @@ class THomeCategories extends StatelessWidget {
           itemCount: 6,
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) {
-            return TVerticalImageText(image: 'image', title: 'shows', onTap: (){},);
+            return TVerticalImageText(image: TImages.guitarIcon, title: 'Guitar', onTap: (){},);
           }),
     );
   }

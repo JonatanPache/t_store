@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/common/cart_menu_icon.dart';
-import 'package:t_store/common/t_appbar.dart';
+import 'package:t_store/common/widgets/products/product_cards/cart_menu_icon.dart';
+import 'package:t_store/common/widgets/appbar/t_appbar.dart';
 
 class THomeAppBar extends StatelessWidget {
   const THomeAppBar({super.key});
