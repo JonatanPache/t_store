@@ -28,4 +28,12 @@ class TImages {
   static const promoBanner1 = "assets/images/banners/fender_telecaster.png";
   static const promoBanner2 = "assets/images/banners/gibson_flying_v.png";
   static const promoBanner3 = "assets/images/banners/gibson_sg.png";
+
+  // products
+  static const productImage1 = "assets/images/banners/gibson_sg.png";
+  static const productImage2 = "assets/images/banners/gibson_sg.png";
+  static const productImage3 = "assets/images/banners/fender_telecaster.png";
+  static const productImage4 = "assets/images/banners/fender_telecaster.png";
+  static const productImage5 = "assets/images/banners/gibson_flying_v.png";
+  static const productImage6 = "assets/images/banners/gibson_flying_v.png";
 }

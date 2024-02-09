@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
+import 'package:t_store/features/shop/screens/store/store.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -22,10 +24,10 @@ class NavigationMenu extends StatelessWidget {
           backgroundColor: dark ? TColors.black : TColors.white,
           indicatorColor: dark ? TColors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1),
           destinations: const [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.home), label: 'Store'),
-            NavigationDestination(icon: Icon(Icons.home), label: 'WishList'),
-            NavigationDestination(icon: Icon(Icons.home), label: 'Profile'),
+            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
+            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
+            NavigationDestination(icon: Icon(Iconsax.heart), label: 'WishList'),
+            NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ],
         ),
       ),
@@ -38,9 +40,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    Container(
-      color: Colors.red,
-    ),
+    const StoreScreen(),
     Container(
       color: Colors.purple,
     ),
