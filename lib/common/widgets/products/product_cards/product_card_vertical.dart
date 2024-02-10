@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/styles/shadows.dart';
+import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
+import 'package:t_store/features/shop/screens/product_details/product_detail.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
@@ -18,7 +21,7 @@ class TProductCardVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () {}, // product detail --- still in built
+      onTap: () => Get.to( () => const ProductDetailScreen()), // product detail --- still in built
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -77,47 +80,49 @@ class TProductCardVertical extends StatelessWidget {
             ),
 
             // details
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               // wrap with sized box because of make the column full width
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TProductTitleText(
+                    TProductTitleText(
                       title: 'Gibson SG',
                       smallSize: true,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: TSizes.spaceBtwItems / 2,
                     ),
-
-                    Row(
-                      children: [
-                        Text(
-                          'Gibson',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.labelMedium,
-                        ),
-                        const SizedBox(
-                          width: TSizes.xs,
-                        ),
-                        const Icon(
-                          Iconsax.verify5,
-                          color: TColors.primary,
-                          size: TSizes.iconXs,
-                        )
-                      ],
-                    ),
+                    TBrandTitleWithVerifiedIcon(title: 'Gibson')
+  
+                    
+                    // Row(
+                    //   children: [
+                    //     Text(
+                    //       'Gibson',
+                    //       overflow: TextOverflow.ellipsis,
+                    //       maxLines: 1,
+                    //       style: Theme.of(context).textTheme.labelMedium,
+                    //     ),
+                    //     const SizedBox(
+                    //       width: TSizes.xs,
+                    //     ),
+                    //     const Icon(
+                    //       Iconsax.verify5,
+                    //       color: TColors.primary,
+                    //       size: TSizes.iconXs,
+                    //     )
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
             ),
 
             // add spacer to keep the height of each box
-            Spacer(),
+            const Spacer(),
 
             // row price
             Row(

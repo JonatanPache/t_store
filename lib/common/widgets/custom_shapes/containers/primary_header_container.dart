@@ -16,12 +16,14 @@ class TPrimaryHeaderContainer extends StatelessWidget {
       child: Container(
         color: TColors.primary,
         padding: const EdgeInsets.only(bottom: 0),
-        child: SizedBox(
-          height: 400,
+        // child: SizedBox(
+        //   height: 400,
           child: Container(
             color: TColors.primary,
+            // size.isFinite is not true
             child: Stack(
               children: [
+                // background custom shapes
                 Positioned(
                   top: -150,
                   right: -250,
@@ -41,7 +43,7 @@ class TPrimaryHeaderContainer extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      // ),
     );
   }
 }

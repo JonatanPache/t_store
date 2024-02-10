@@ -13,6 +13,7 @@ class TImages {
       "assets/images/on_boarding_images/guitar_store.gif";
   static const onBoardingImage3 = "assets/images/on_boarding_images/instrument_store.gif";
 
+  // illustrations
   static const productsIllustration = "assets/images/on_boarding_images/instrument_store.gif";
   static const productsSaleIllustration = "assets/images/on_boarding_images/instrument_store.gif";
   static const staticSuccessIllustration = "assets/images/animations/success_animation.gif";
@@ -20,14 +21,17 @@ class TImages {
   static const deliveryEmailIllustration = "assets/images/animations/email_animation.gif";
   static const verifyIllustration = "assets/images/animations/verify.gif";
 
-
+  // icons
   static const guitarIcon = "assets/icons/categories/guitar.png";
   static const bassIcon = "assets/icons/categories/bass.png";
 
-
+  // banners
   static const promoBanner1 = "assets/images/banners/fender_telecaster.png";
   static const promoBanner2 = "assets/images/banners/gibson_flying_v.png";
   static const promoBanner3 = "assets/images/banners/gibson_sg.png";
+
+  // user
+  static const user = "assets/images/banners/gibson_sg.png";
 
   // products
   static const productImage1 = "assets/images/banners/gibson_sg.png";

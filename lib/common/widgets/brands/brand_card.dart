@@ -6,7 +6,7 @@ import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
-import 'texts/t_brand_title_text_with_verified_icon.dart';
+import '../texts/t_brand_title_text_with_verified_icon.dart';
 
 class TBrandCard extends StatelessWidget {
   const TBrandCard({
