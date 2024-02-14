@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_c
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -63,28 +64,46 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.safe_home,
                     title: 'My Address',
                     subTitle: 'Set shopping address',
-                    onTap: () {},
+                    onTap: () => Get.to( () => const UserAddressScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.shopping_cart,
-                    title: 'My Address',
+                    title: 'My Cart',
                     subTitle: 'Set shopping address',
                     onTap: () {},
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick,
-                    title: 'My Address',
+                    title: 'My Orders',
+                    subTitle: 'Set shopping address',
+                    onTap: () {},
+                  ),
+                  TSettingsMenuTile(
+                    icon: Iconsax.bank,
+                    title: 'Bank Account',
+                    subTitle: 'Set shopping address',
+                    onTap: () {},
+                  ),
+                  TSettingsMenuTile(
+                    icon: Iconsax.discount_shape,
+                    title: 'My Coupons',
                     subTitle: 'Set shopping address',
                     onTap: () {},
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.notification,
-                    title: 'My Address',
+                    title: 'Notifications',
+                    subTitle: 'Set shopping address',
+                    onTap: () {},
+                  ),
+                  TSettingsMenuTile(
+                    icon: Iconsax.security_card,
+                    title: 'Account Privacy',
                     subTitle: 'Set shopping address',
                     onTap: () {},
                   ),
 
-                  // app settings
+                  // App Settings
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
