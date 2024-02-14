@@ -12,8 +12,8 @@ class THomeAppBar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('title', style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey),),
-          Text('subtitle', style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white),)
+          Text('Guitar Store', style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey),),
+          Text('You can rock and roll ', style: Theme.of(context).textTheme.headlineSmall!.apply(color: TColors.white),)
         ],
       ),
       actions: [TCartCounterIcon(iconColor: TColors.white, onPressed: (){})],

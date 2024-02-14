@@ -19,6 +19,7 @@ class OnBoardingScreen extends StatelessWidget {
         // Horizontal scrollable pages
         PageView(
           controller: controller.pageController,
+          onPageChanged: controller.updatePageIndicator,
           children: const [
             OnBoardingPage(
               image: TImages.onBoardingImage1,

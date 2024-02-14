@@ -32,6 +32,7 @@ class TPromoSlider extends StatelessWidget {
         Center(
           child: Obx(
             () => Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 for (int i = 0; i < banners.length; i++)
                   TCircularContainer(
