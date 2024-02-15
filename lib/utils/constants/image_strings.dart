@@ -40,4 +40,10 @@ class TImages {
   static const productImage4 = "assets/images/banners/fender_telecaster.png";
   static const productImage5 = "assets/images/banners/gibson_flying_v.png";
   static const productImage6 = "assets/images/banners/gibson_flying_v.png";
+
+  // payment
+  static const paypal = "assets/images/banners/gibson_flying_v.png";
+  // static const productImage6 = "assets/images/banners/gibson_flying_v.png";
+  // static const productImage6 = "assets/images/banners/gibson_flying_v.png";
+  // static const productImage6 = "assets/images/banners/gibson_flying_v.png";
 }
