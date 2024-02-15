@@ -19,16 +19,16 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      bottomNavigationBar: TBottomAddToCart(),
+      bottomNavigationBar: const TBottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             // 1 product image slider
-            TProductImageSlider(),
+            const TProductImageSlider(),
 
             // 2 product details
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 right: TSizes.defaultSpace,
                 left: TSizes.defaultSpace,
                 bottom: TSizes.defaultSpace,
@@ -36,13 +36,13 @@ class ProductDetailScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // rating and share button
-                  TRatingAndShare(),
+                  const TRatingAndShare(),
 
                   // price, title, stock and brand
-                  TProductMetaData(),
+                  const TProductMetaData(),
 
                   // attributes
-                  TProductAttributes(),
+                  const TProductAttributes(),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
@@ -54,6 +54,9 @@ class ProductDetailScreen extends StatelessWidget {
                       onPressed: () {},
                       child: const Text('Checkout'),
                     ),
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
                   ),
 
                   // description
