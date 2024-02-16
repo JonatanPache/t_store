@@ -3,6 +3,7 @@ import 'package:t_store/common/widgets/appbar/t_appbar.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_horizontal.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class SubCategoriesScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class SubCategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TAppBar(
-        title: Text('Sport'),
+        title: Text('Electric Guitar'),
         showBackArrow: false,
       ),
       body: SingleChildScrollView(
@@ -24,7 +25,7 @@ class SubCategoriesScreen extends StatelessWidget {
               const TRoundedImage(
                 width: double.infinity,
                 height: null,
-                imageUrl: '',
+                imageUrl: TImages.promoBanner1,
                 applyImageRadius: true,
               ),
               const SizedBox(
@@ -35,7 +36,7 @@ class SubCategoriesScreen extends StatelessWidget {
               Column(
                 children: [
                   TSectionHeading(
-                    title: 'Sport',
+                    title: 'Electric Guitars',
                     onPressed: () {},
                   ),
                   const SizedBox(
