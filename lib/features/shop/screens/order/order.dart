@@ -15,7 +15,7 @@ class OrderScreen extends StatelessWidget {
         ),
         showBackArrow: true,
       ),
-      body: TOrderListItems(),
+      body: const TOrderListItems(),
     );
   }
 }
