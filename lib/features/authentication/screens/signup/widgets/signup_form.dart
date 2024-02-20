@@ -19,14 +19,14 @@ class TSignupForm extends StatelessWidget {
       key: controller.signupFormKey,
       child: Column(
         children: [
-
           // first and last name
           Row(
             children: [
               Expanded(
                 child: TextFormField(
                   controller: controller.firstName,
-                  validator: (value) => TValidator.validateEmptyText('First Name', value),
+                  validator: (value) =>
+                      TValidator.validateEmptyText('First Name', value),
                   expands: false,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Iconsax.user),
@@ -34,11 +34,11 @@ class TSignupForm extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: TSizes.spaceBtwInputFields),
-
               Expanded(
                 child: TextFormField(
                   controller: controller.lastName,
-                  validator: (value) => TValidator.validateEmptyText('Last Name', value),
+                  validator: (value) =>
+                      TValidator.validateEmptyText('Last Name', value),
                   expands: false,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Iconsax.user),
@@ -52,7 +52,8 @@ class TSignupForm extends StatelessWidget {
           // username
           TextFormField(
             controller: controller.username,
-            validator: (value) => TValidator.validateEmptyText('Username', value),
+            validator: (value) =>
+                TValidator.validateEmptyText('Username', value),
             expands: false,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.user_edit),
@@ -81,14 +82,21 @@ class TSignupForm extends StatelessWidget {
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
           // password
-          TextFormField(
-            controller: controller.password,
-            validator: (value) => TValidator.validatePassword(value),
-            obscureText: true,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                suffixIcon: Icon(Iconsax.eye_slash),
-                labelText: TTexts.password),
+          Obx(
+            () => TextFormField(
+              controller: controller.password,
+              validator: (value) => TValidator.validatePassword(value),
+              obscureText: controller.hidePassword.value,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                  onPressed: () => controller.hidePassword.value =
+                      !controller.hidePassword.value,
+                  icon: Icon( controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye),
+                ),
+                labelText: TTexts.password,
+              ),
+            ),
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
