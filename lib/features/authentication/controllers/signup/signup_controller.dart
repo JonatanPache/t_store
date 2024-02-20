@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/loaders.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/authentication/models/user_model.dart';
+import 'package:t_store/features/authentication/screens/signup/verify_email.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/network/network_manager.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
@@ -25,37 +27,67 @@ class SignupController extends GetxController {
   Future<void> signup() async {
     try {
       // start loading
-      TFullScreenLoader.openLoadingDialog('We are processing your information', TImages.promoBanner1);
+      TFullScreenLoader.openLoadingDialog(
+          'We are processing your information', TImages.docerAnimation);
 
       // check internet connectivity
       final isConnected = await NetworkManager.instance.isConnected();
-      if (!isConnected) return;
+      if (!isConnected) {
+        // remove loader
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
       // form validation
-      if (!signupFormKey.currentState!.validate()) return;
+      if (!signupFormKey.currentState!.validate()) {
+        // remove loader
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
       // privacy policy check
       if (!privacyPolicy.value) {
-        TLoaders.warningSnackBar(title: 'Accept Privacy Policy', message: 'In order to create account, you must have to read and accept the Privacy Policy and Terms of Use.');
+        TLoaders.warningSnackBar(
+            title: 'Accept Privacy Policy',
+            message:
+                'In order to create account, you must have to read and accept the Privacy Policy and Terms of Use.');
         return;
       }
 
       // register user in the firebase authentication and save user data in the firebase
-      final user = await AuthenticationRepository.instance.registerWithEmailAndPassword(email.text.trim(), password.text.trim());
+      final userCredential = await AuthenticationRepository.instance
+          .registerWithEmailAndPassword(
+              email.text.trim(), password.text.trim());
 
       // save authentication
-      // final newUser = UserModel();
+      final newUser = UserModel(
+        id: userCredential.user!.uid,
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        username: username.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        profilePicture: '',
+      );
 
-      // show success message
+      final userRepository = Get.put(UserRepository());
+      await userRepository.saveUserRecord(newUser);
 
-      // move  to verify email screen
-
-    } catch (e) {
-      // show some generic error to the user
-      TLoaders.errorSnackBar(title: e.toString());
-    } finally {
       // remove loader
       TFullScreenLoader.stopLoading();
+
+      // show success message
+      TLoaders.successSnackBar(title: 'Congratulations', message: 'Your account has been created! Verify email to continue.');
+
+      // move  to verify email screen
+      Get.to(() => VerifyEmailScreen(email: email.text.trim()));
+
+    } catch (e) {
+      // remove loader
+      TFullScreenLoader.stopLoading();
+
+      // show some generic error to the user
+      TLoaders.errorSnackBar(title: e.toString());
     }
   }
 }

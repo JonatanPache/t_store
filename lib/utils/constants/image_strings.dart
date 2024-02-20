@@ -45,5 +45,10 @@ class TImages {
   static const paypal = "assets/images/banners/gibson_flying_v.png";
   // static const productImage6 = "assets/images/banners/gibson_flying_v.png";
   // static const productImage6 = "assets/images/banners/gibson_flying_v.png";
-  // static const productImage6 = "assets/images/banners/gibson_flying_v.png";
+
+
+
+  // lottie animations
+  static const docerAnimation = "assets/images/animations/lotties/web-address-registration.json";
+  static const successfullyRegisterAnimation = "assets/images/animations/lotties/ic_fab_animate.json";
 }

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:t_store/features/authentication/screens/signup/verify_email.dart';
+import 'package:t_store/navigation_menu.dart';
 import 'package:t_store/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:t_store/utils/exceptions/firebase_exception.dart';
 import 'package:t_store/utils/exceptions/format_exceptions.dart';
@@ -25,12 +27,22 @@ class AuthenticationRepository extends GetxController {
 
   // Function to show relevant screen
   screenRedirect() async {
-    // local storage
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    // check if its the first time launching the app
-    deviceStorage.read('IsFirstTime') != true
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(const OnBoardingScreen());
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(() => const NavigationMenu());
+      } else {
+        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
+      }
+    } else {
+      // local storage
+      deviceStorage.writeIfNull('IsFirstTime', true);
+
+      // check if its the first time launching the app
+      deviceStorage.read('IsFirstTime') != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(const OnBoardingScreen());
+    }
   }
 
   /* --------------- Email and password sign in ------------- */
@@ -70,4 +82,22 @@ class AuthenticationRepository extends GetxController {
   }
 
 
+
+  /// [LogoutUser] valid for any authentication
+  Future<void> logout() async {
+    try{
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on TFirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on TFormatException catch (_) {
+      throw const TFormatException();
+    } on TPlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 }

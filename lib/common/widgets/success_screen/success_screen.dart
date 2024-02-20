@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:t_store/common/styles/spacing_styles.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -23,13 +24,8 @@ class SuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               // Image
-              Image(
-                image: AssetImage(image),
-                width: THelperFunctions.screenWidth() * 0.6,
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
+              Lottie.asset(image, width: THelperFunctions.screenWidth() * 0.6),
+              const SizedBox(height: TSizes.spaceBtwSections),
 
               // title and subtitle
               Text(
@@ -37,28 +33,19 @@ class SuccessScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
-              ),
+              const SizedBox(height: TSizes.spaceBtwItems),
               Text(
                 subTitle,
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: TSizes.spaceBtwSections,
-              ),
+              const SizedBox(height: TSizes.spaceBtwSections),
 
-              //button
+              // buttons
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: onPressed,
-                  child: const Text(TTexts.tContinue),
-                ),
-              ),
-              const SizedBox(
-                height: TSizes.spaceBtwItems,
+                    onPressed: onPressed, child: const Text(TTexts.tContinue)),
               ),
             ],
           ),
