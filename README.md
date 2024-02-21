@@ -22,3 +22,5 @@ The number of method references in a .dex file cannot exceed 64K.
 Multidex support is required for your android app to build since the number of methods has exceeded 64k. See https://docs.flutter.dev/deployment/android#enabling-multidex-support for more information. You may pass the --no-multidex flag to skip Flutter's multidex support to use a manual solution.
 
     Flutter tool can add multidex support. The following file will be added by flutter:
+
+SOLUTION: Run this command `fvm flutter run --multidex`

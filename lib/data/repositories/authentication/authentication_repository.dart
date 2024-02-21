@@ -18,24 +18,27 @@ class AuthenticationRepository extends GetxController {
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
 
-  // Called from main.dart on app launch
+  /// Called from main.dart on app launch
   @override
   void onReady() {
     FlutterNativeSplash.remove();
     screenRedirect();
   }
 
-  // Function to show relevant screen
+  /// Function to show relevant screen
   screenRedirect() async {
     final user = _auth.currentUser;
+
     if (user != null) {
       if (user.emailVerified) {
+        // if the user email is verified, navigate to the main Navigate Menu
         Get.offAll(() => const NavigationMenu());
       } else {
+        // if the user's email is not verified, navigate to the VerifyEmailScreen
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
       }
     } else {
-      // local storage
+      // Local Storage
       deviceStorage.writeIfNull('IsFirstTime', true);
 
       // check if its the first time launching the app
@@ -47,7 +50,24 @@ class AuthenticationRepository extends GetxController {
 
   /* --------------- Email and password sign in ------------- */
 
-  // [EmailAuthentication] - Register
+  /// [EmailAuthentication] - LOGIN
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
+    try{
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on TFirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on TFormatException catch (_) {
+      throw const TFormatException();
+    } on TPlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
+
+  /// [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
     try{
       return await _auth.createUserWithEmailAndPassword(email: email, password: password);

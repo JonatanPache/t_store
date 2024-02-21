@@ -17,7 +17,7 @@ class TSignupForm extends StatelessWidget {
       key: controller.signupFormKey,
       child: Column(
         children: [
-          // first and last name
+          /// First and last name
           Row(
             children: [
               Expanded(
@@ -47,7 +47,7 @@ class TSignupForm extends StatelessWidget {
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
-          // username
+          /// Username
           TextFormField(
             controller: controller.username,
             validator: (value) =>
@@ -59,7 +59,7 @@ class TSignupForm extends StatelessWidget {
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
-          // email
+          /// Email
           TextFormField(
             controller: controller.email,
             validator: (value) => TValidator.validateEmail(value),
@@ -69,7 +69,7 @@ class TSignupForm extends StatelessWidget {
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
-          // phone number
+          /// Phone number
           TextFormField(
             controller: controller.phoneNumber,
             validator: (value) => TValidator.validatePhoneNumber(value),
@@ -79,7 +79,7 @@ class TSignupForm extends StatelessWidget {
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
-          // password
+          /// Password
           Obx(
             () => TextFormField(
               controller: controller.password,
@@ -98,11 +98,11 @@ class TSignupForm extends StatelessWidget {
           ),
           const SizedBox(height: TSizes.spaceBtwInputFields),
 
-          // terms of use
+          /// Terms of use
           const TTermsAndConditionsCheckbox(),
           const SizedBox(height: TSizes.spaceBtwSections),
 
-          // sign up button
+          /// Sign up button
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
