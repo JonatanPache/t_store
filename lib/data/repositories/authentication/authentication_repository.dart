@@ -50,7 +50,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  /* --------------- Email and password sign in ------------- */
+  /* --------------- Email and password sign-in ---------------------------- */
 
   /// [EmailAuthentication] - LOGIN
   Future<UserCredential> loginWithEmailAndPassword(
@@ -110,7 +110,21 @@ class AuthenticationRepository extends GetxController {
   /// [ReAuthenticate] - RE AUTHENTICATE USER
 
   /// [EmailAuthentication] - FORGET PASSWORD
-
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on TFirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on TFirebaseException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on TFormatException catch (_) {
+      throw const TFormatException();
+    } on TPlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
+    }
+  }
 
   /*---------------- Federated identity and social sign-in -------------------*/
 
@@ -121,14 +135,15 @@ class AuthenticationRepository extends GetxController {
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
 
       // Create a new credential
-      final credentials = GoogleAuthProvider.credential(accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
 
       // Once signed in, return the UserCredential
       return await _auth.signInWithCredential(credentials);
-
     } on TFirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on TFirebaseException catch (e) {
@@ -146,7 +161,6 @@ class AuthenticationRepository extends GetxController {
   /// [FacebookAuthentication] - FACEBOOK
 
   /*------------- end Federated identity and social sign-in ------------------*/
-
 
   /// [LogoutUser] valid for any authentication
   Future<void> logout() async {
