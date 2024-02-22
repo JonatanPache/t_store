@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_store/common/widgets/loaders/loaders.dart';
+import 'package:t_store/utils/popups/loaders.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/authentication/models/user_model.dart';

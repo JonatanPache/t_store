@@ -12,7 +12,7 @@ class UserRepository extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
 
-  /// Function to save user data to Firestore.
+  /// Function to save user data to FireStore.
   Future<void> saveUserRecord(UserModel user) async {
     try {
       await _db.collection("Users").doc(user.id).set(user.toJson());
