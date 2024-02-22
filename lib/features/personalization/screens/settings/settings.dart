@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_c
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
@@ -25,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
             TPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  // appBar
+                  /// appBar
                   TAppBar(
                     title: Text(
                       'Account',
@@ -36,13 +37,11 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  // user profile card
+                  /// user profile card
                   TUserProfileTile(
                     onPressed: () => Get.to(() => const ProfileScreen()),
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
             ),
@@ -57,15 +56,13 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Account Settings',
                     showActionButton: false,
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwItems,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwItems),
 
                   TSettingsMenuTile(
                     icon: Iconsax.safe_home,
                     title: 'My Address',
                     subTitle: 'Set shopping address',
-                    onTap: () => Get.to( () => const UserAddressScreen()),
+                    onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.shopping_cart,
@@ -77,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                     icon: Iconsax.bag_tick,
                     title: 'My Orders',
                     subTitle: 'Set shopping address',
-                    onTap: () => Get.to( () => const OrderScreen()),
+                    onTap: () => Get.to(() => const OrderScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bank,
@@ -104,17 +101,13 @@ class SettingsScreen extends StatelessWidget {
                     onTap: () {},
                   ),
 
-                  // App Settings
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  /// App Settings
+                  const SizedBox(height: TSizes.spaceBtwSections),
                   const TSectionHeading(
                     title: 'App Settings',
                     showActionButton: false,
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwItems,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwItems),
                   TSettingsMenuTile(
                     icon: Iconsax.location,
                     title: 'GeoLocation',
@@ -144,19 +137,15 @@ class SettingsScreen extends StatelessWidget {
                   ),
 
                   // logout button
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () => AuthenticationRepository.instance.logout(),
                       child: const Text('Logout'),
                     ),
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections * 2.5,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections * 2.5),
                 ],
               ),
             ),
