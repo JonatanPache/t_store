@@ -25,15 +25,11 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // App bar
                   THomeAppBar(),
-                  SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  SizedBox(height: TSizes.spaceBtwSections),
 
                   // searchbar
                   TSearchContainer(text: 'Search in store'),
-                  SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  SizedBox(height: TSizes.spaceBtwSections),
 
                   // categories
                   Padding(
@@ -46,18 +42,14 @@ class HomeScreen extends StatelessWidget {
                           showActionButton: false,
                           textColor: Colors.white,
                         ),
-                        SizedBox(
-                          height: TSizes.spaceBtwItems,
-                        ),
+                        SizedBox(height: TSizes.spaceBtwItems),
 
                         // categories
                         THomeCategories(),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
             ),
@@ -68,28 +60,20 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // promo slider
-                  const TPromoSlider(
-                    banners: [
-                      TImages.promoBanner1,
-                      TImages.promoBanner2,
-                      TImages.promoBanner3,
-                    ],
-                  ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const TPromoSlider(),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
                   // heading
                   TSectionHeading(
                     title: 'Popular Products',
-                    onPressed: (){},
+                    onPressed: () {},
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwItems,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwItems),
 
                   // popular products
-                  TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical())
+                  TGridLayout(
+                      itemCount: 4,
+                      itemBuilder: (_, index) => const TProductCardVertical())
                 ],
               ),
             ),

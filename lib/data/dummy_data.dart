@@ -1,9 +1,15 @@
+import 'package:t_store/features/shop/models/banner_model.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 
 class TDummyData {
   // Banners
-  // static final List<>
+  static final List<BannerModel> banners = [
+    BannerModel(targetScreen: '/guitar', active: true, imageUrl: TImages.promoBanner1),
+    BannerModel(targetScreen: '/stomp', active: true, imageUrl: TImages.promoBanner2),
+    BannerModel(targetScreen: '/drum', active: true, imageUrl: TImages.promoBanner3),
+    BannerModel(targetScreen: '/strings', active: true, imageUrl: TImages.promoBanner4),
+  ];
 
   // List of categories
   static final List<CategoryModel> categories = [

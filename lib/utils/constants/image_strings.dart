@@ -32,9 +32,10 @@ class TImages {
   static const keyboardIcon = "assets/icons/categories/keyboard_icon.png";
 
   // banners
-  static const promoBanner1 = "assets/images/banners/fender_telecaster.png";
-  static const promoBanner2 = "assets/images/banners/gibson_flying_v.png";
-  static const promoBanner3 = "assets/images/banners/gibson_sg.png";
+  static const promoBanner1 = "assets/images/banners/promo_guitar.png";
+  static const promoBanner2 = "assets/images/banners/stomp_box_banner.png";
+  static const promoBanner3 = "assets/images/banners/pedal_drum_promo.png";
+  static const promoBanner4 = "assets/images/banners/promo_banner_string.png.png";
 
   // user
   static const user = "assets/images/banners/gibson_sg.png";
