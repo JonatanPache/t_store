@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
@@ -20,6 +21,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
@@ -31,6 +33,7 @@ class UserController extends GetxController {
     fetchUserRecord();
   }
 
+  /// Fetch user record
   Future<void> fetchUserRecord() async {
     try {
       profileLoading.value = true;
@@ -47,26 +50,31 @@ class UserController extends GetxController {
   /// Save user Record from any Registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        // Convert Name to first and last name
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      // first update Rx user and then check if user data is already stored. If not store new data
+      await fetchUserRecord();
 
-        // Map data
-        final user = UserModel(
-            id: userCredentials.user!.uid,
-            firstName: nameParts[0],
-            lastName:
-                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-            username: username,
-            email: userCredentials.user!.email ?? '',
-            phoneNumber: userCredentials.user!.phoneNumber ?? '',
-            profilePicture: userCredentials.user!.photoURL ?? '');
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          // Convert Name to first and last name
+          final nameParts =
+              UserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        // Save user data
-        await userRepository.saveUserRecord(user);
+          // Map data
+          final user = UserModel(
+              id: userCredentials.user!.uid,
+              firstName: nameParts[0],
+              lastName:
+                  nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+              username: username,
+              email: userCredentials.user!.email ?? '',
+              phoneNumber: userCredentials.user!.phoneNumber ?? '',
+              profilePicture: userCredentials.user!.photoURL ?? '');
+
+          // Save user data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       TLoaders.warningSnackBar(
@@ -76,7 +84,7 @@ class UserController extends GetxController {
     }
   }
 
-  /// Delet account warning
+  /// Delete account warning
   void deleteAccountWarningPopup() {
     Get.defaultDialog(
         contentPadding: const EdgeInsets.all(TSizes.md),
@@ -145,14 +153,49 @@ class UserController extends GetxController {
         return;
       }
 
-      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
+      await AuthenticationRepository.instance
+          .reAuthenticateWithEmailAndPassword(
+              verifyEmail.text.trim(), verifyPassword.text.trim());
       await AuthenticationRepository.instance.deleteAccount();
 
       TFullScreenLoader.stopLoading();
-      Get.offAll( () => const LoginScreen());
+      Get.offAll(() => const LoginScreen());
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: e.toString());
+    }
+  }
+
+  // Upload profile picture
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
+        imageUploading.value = true;
+        // upload image
+        final imageUrl =
+            await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        // update user image record
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        TLoaders.successSnackBar(
+            title: 'Congratulations',
+            message: 'Your Profile Image has been updated!');
+      }
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: e.toString());
+    } finally {
+      imageUploading.value = false;
     }
   }
 }
