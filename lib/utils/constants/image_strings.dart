@@ -22,8 +22,14 @@ class TImages {
   static const verifyIllustration = "assets/images/animations/verify.gif";
 
   // icons
-  static const guitarIcon = "assets/icons/categories/guitar.png";
-  static const bassIcon = "assets/icons/categories/bass.png";
+  static const electricGuitarIcon = "assets/icons/categories/guitar_icon.png";
+  static const bassIcon = "assets/icons/categories/bass_icon.png";
+  static const drumIcon = "assets/icons/categories/drum_icon.png";
+  static const stompBoxIcon = "assets/icons/categories/stomp_box_icon.png";
+  static const acousticGuitarIcon = "assets/icons/categories/acoustic_guitar_icon.png";
+  static const stringsIcon = "assets/icons/categories/strings_icon.png";
+  static const ampIcon = "assets/icons/categories/amp_icon.png";
+  static const keyboardIcon = "assets/icons/categories/keyboard_icon.png";
 
   // banners
   static const promoBanner1 = "assets/images/banners/fender_telecaster.png";

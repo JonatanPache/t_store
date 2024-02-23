@@ -35,7 +35,7 @@ class TBrandCard extends StatelessWidget {
                 isNetworkImage: false,
                 backgroundColor: Colors.transparent,
                 overlayColor: dark ? TColors.white : TColors.black,
-                image: TImages.guitarIcon,
+                image: TImages.electricGuitarIcon,
               ),
             ),
             const SizedBox(
