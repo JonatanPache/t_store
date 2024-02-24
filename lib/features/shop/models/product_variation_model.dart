@@ -1,5 +1,3 @@
-import 'package:t_store/features/shop/models/brand_model.dart';
-import 'package:t_store/features/shop/models/product_attribute_model.dart';
 
 class ProductVariationModel {
   final String id;

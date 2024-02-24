@@ -5,7 +5,6 @@ import 'package:t_store/common/widgets/custom_shapes/containers/circular_contain
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/shimmers/shimmer.dart';
 import 'package:t_store/features/shop/controllers/banner_controller.dart';
-import 'package:t_store/features/shop/controllers/home_controller.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 

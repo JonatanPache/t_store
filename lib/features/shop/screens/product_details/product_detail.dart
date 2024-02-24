@@ -10,6 +10,7 @@ import 'package:t_store/features/shop/screens/product_details/widgets/product_de
 import 'package:t_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:t_store/features/shop/screens/product_reviews/product_reviews.dart';
+import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -25,10 +26,10 @@ class ProductDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // 1 product image slider
-            const TProductImageSlider(),
+            /// 1 Product image slider
+            TProductImageSlider(product: product),
 
-            // 2 product details
+            /// 2 Product details
             Padding(
               padding: const EdgeInsets.only(
                 right: TSizes.defaultSpace,
@@ -37,19 +38,19 @@ class ProductDetailScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  // rating and share button
+                  /// Rating and share button
                   const TRatingAndShare(),
 
-                  // price, title, stock and brand
-                  const TProductMetaData(),
+                  /// Price, title, stock and brand
+                  TProductMetaData(product: product),
 
-                  // attributes
-                  const TProductAttributes(),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  /// Attributes
+                  if (product.productType == ProductType.variable.toString())
+                    TProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString())
+                    const SizedBox(height: TSizes.spaceBtwSections),
 
-                  // checkout button
+                  /// Checkout button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -57,39 +58,50 @@ class ProductDetailScreen extends StatelessWidget {
                       child: const Text('Checkout'),
                     ),
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
-                  // description
+                  /// Description
                   const TSectionHeading(
                     title: 'Description',
                     showActionButton: false,
                   ),
-                  const SizedBox(
-                    height: TSizes.spaceBtwItems,
-                  ),
-                  const ReadMoreText(
-                    'asdasdasdadasdasdasdasdasdasdasdasdasdasd',
+                  const SizedBox(height: TSizes.spaceBtwItems),
+                  ReadMoreText(
+                    product.description ?? '',
                     trimLines: 1,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle:
+                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle:
+                        const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   // reviews
                   const Divider(),
-                  const SizedBox(height: TSizes.spaceBtwItems,),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const TSectionHeading(title: 'Reviews (199)', showActionButton: false,),
-                      IconButton(onPressed: () => Get.to( () => const TProductReviewsScreen()), icon: const Icon(Iconsax.arrow_right_3, size: 18,))
+                      const TSectionHeading(
+                        title: 'Reviews (199)',
+                        showActionButton: false,
+                      ),
+                      IconButton(
+                          onPressed: () =>
+                              Get.to(() => const TProductReviewsScreen()),
+                          icon: const Icon(
+                            Iconsax.arrow_right_3,
+                            size: 18,
+                          ))
                     ],
                   ),
-                  const SizedBox(height: TSizes.spaceBtwSections,)
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  )
                 ],
               ),
             )

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:t_store/common/widgets/shimmers/shimmer.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class TCategoryShimmer extends StatelessWidget {
