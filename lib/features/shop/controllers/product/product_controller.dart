@@ -83,4 +83,18 @@ class ProductController extends GetxController {
   String getProductStockStatus(int stock){
     return stock > 0 ? 'In Stock' : 'Out of Stock';
   }
+
+  /// Selected attribute and variation
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try {
+
+      final products = await productRepository.getAllFeaturedProducts();
+      return products;
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Oh snap', message: e.toString());
+      return [];
+    }
+  }
+
+
 }

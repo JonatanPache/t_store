@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/products/product_cards/product_card_verti
 import 'package:t_store/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
+import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:t_store/features/shop/screens/home/widgets/promo_slider.dart';
@@ -57,7 +58,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // body
+            /// body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
@@ -69,11 +70,20 @@ class HomeScreen extends StatelessWidget {
                   // heading
                   TSectionHeading(
                     title: 'Popular Products',
-                    onPressed: () {},
+                    onPressed: () => Get.to(
+                      () => AllProducts(
+                        title: 'Popular Products',
+                        // query: FirebaseFirestore.instance
+                        //     .collection('Products')
+                        //     .where('IsFeatured', isEqualTo: true)
+                        //     .limit(6),
+                        futureMethod: controller.fetchAllFeaturedProducts(),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: TSizes.spaceBtwItems),
 
-                  // popular products
+                  /// Popular products
                   Obx(
                     () {
                       if (controller.isLoading.value) {
