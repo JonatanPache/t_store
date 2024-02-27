@@ -4,7 +4,6 @@ import 'package:t_store/common/widgets/images/t_circular_image.dart';
 import 'package:t_store/features/shop/models/brand_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 import '../texts/t_brand_title_text_with_verified_icon.dart';

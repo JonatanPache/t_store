@@ -63,7 +63,7 @@ class ProductRepository extends GetxController {
     }
   }
 
-  /// Get Products based on the Query
+  /// Get Products for brand
   Future<List<ProductModel>> getProductsForBrand({required String brandId, int limit = -1 }) async {
     try {
       final querySnapshot = limit == -1 ? await _db.collection('Products').where('Brand.Id',isEqualTo: brandId).get():
@@ -80,6 +80,41 @@ class ProductRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
+
+  /// Get Products for brand
+  Future<List<ProductModel>> getProductsForCategory({required String categoryId, int limit = 4 }) async {
+    try {
+      // query to get all documents where productId matches the provided catgoryId and Fetch limited or unlimited based on limit
+      final productCategoryQuery = limit == -1 ? await _db.collection('ProductCategory').where('categoryId',isEqualTo: categoryId).get():
+      await _db.collection('ProductCategory').where('categoryId',isEqualTo: categoryId).limit(limit).get();
+
+      // extract productIds from the documents
+      List<String> productIds = productCategoryQuery.docs.map((doc) => doc['productId'] as String).toList();
+
+      // query to get all documents where the brandId is in the list of brandIds, FieldPath.docuemtnId to query docuemtns in COllections
+      final productsQuery = await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
+
+      // extract brand names or other relevant data from documents
+      List<ProductModel> products = productsQuery.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+
+      return products;
+    } on TFirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on TFormatException catch (_) {
+      throw const TFormatException();
+    } on TPlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+
+
+
+
+
 
 
 

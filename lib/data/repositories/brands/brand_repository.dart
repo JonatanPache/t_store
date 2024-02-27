@@ -31,4 +31,29 @@ class BrandRepository extends GetxController {
   }
 
 /// Get brands for category
+  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
+    try {
+      // Query to get all documents where categoryId matches the provides categoryId
+      final brandCategoryQuery = await _db.collection('BrandCategory').where('categoryId',isEqualTo: categoryId).limit(2).get();
+      // extract brandIds from the documents
+      final brandsIds = brandCategoryQuery.docs.map((document) =>
+          document['brandId'] as String).toList();
+
+      // Query to get all documents where categoryId matches the provides categoryId
+      final brandsQuery = await _db.collection('Brands').where(FieldPath.documentId,whereIn: brandsIds).limit(2).get();
+      // extract brand names or other relevant data from the documents
+      List<BrandModel> brands = brandsQuery.docs.map((document) =>
+          BrandModel.fromSnapshot(document)).toList();
+      return brands;
+    } on TFirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on TFormatException catch (_) {
+      throw const TFormatException();
+    } on TPlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
 }

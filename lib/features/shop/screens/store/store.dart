@@ -71,8 +71,9 @@ class StoreScreen extends StatelessWidget {
 
                       /// Brands grid
                       Obx(() {
-                        if (brandController.isLoading.value) return const TBrandShimmer();
-
+                        if (brandController.isLoading.value) {
+                          return const TBrandShimmer();
+                        }
 
                         if (brandController.featuredBrands.isEmpty) {
                           return Center(
@@ -98,13 +99,14 @@ class StoreScreen extends StatelessWidget {
                   ),
                 ),
                 bottom: TTabBar(
-                    tabs: categories
-                        .map((category) => Tab(child: Text(category.name)))
-                        .toList()),
+                  tabs: categories
+                      .map((category) => Tab(child: Text(category.name)))
+                      .toList(),
+                ),
               )
             ];
           },
-          // body
+          /// Body
           body: TabBarView(
             children: categories
                 .map((category) => TCategoryTab(category: category))
