@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/t_circular_image.dart';
+import 'package:t_store/features/shop/models/brand_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
@@ -12,8 +13,9 @@ class TBrandCard extends StatelessWidget {
   const TBrandCard({
     super.key,
     required this.showBorder,
-    this.onTap,
+    this.onTap, required this.brand,
   });
+  final BrandModel brand;
   final bool showBorder;
   final void Function()? onTap;
 
@@ -29,27 +31,27 @@ class TBrandCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // icon
+            /// Icon
             Flexible(
               child: TCircularImage(
-                isNetworkImage: false,
+                isNetworkImage: true,
                 backgroundColor: Colors.transparent,
                 overlayColor: dark ? TColors.white : TColors.black,
-                image: TImages.electricGuitarIcon,
+                image: brand.image,
               ),
             ),
             const SizedBox(
-              width: TSizes.spaceBtwItems / 2,
+              width: TSizes.spaceBtwItems / 2
             ),
 
-            // text
+            /// Text
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TBrandTitleWithVerifiedIcon(title: 'Fender', brandTextSize: TextSizes.large,),
-                  Text('25 products', overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelMedium,)
+                  TBrandTitleWithVerifiedIcon(title: brand.name, brandTextSize: TextSizes.large,),
+                  Text('${brand.productCount ?? 0} products', overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.labelMedium,)
                 ],
               ),
             )

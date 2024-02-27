@@ -30,7 +30,7 @@ class ProductRepository extends GetxController {
     }
   }
 
-  /// Function to get limited featured products
+  /// Function to get featured products
   Future<List<ProductModel>> getAllFeaturedProducts() async {
     try {
       final snapshot = await _db.collection('Product').where('IsFeatured', isEqualTo: true).get();
@@ -46,7 +46,7 @@ class ProductRepository extends GetxController {
     }
   }
 
-  /// Function to
+  /// Get Products based on the Query
   Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
     try {
       final querySnapshot = await query.get();
@@ -62,6 +62,25 @@ class ProductRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
+  /// Get Products based on the Query
+  Future<List<ProductModel>> getProductsForBrand({required String brandId, int limit = -1 }) async {
+    try {
+      final querySnapshot = limit == -1 ? await _db.collection('Products').where('Brand.Id',isEqualTo: brandId).get():
+      await _db.collection('Products').where('Brand.Id',isEqualTo: brandId).limit(limit).get();
+      final products = querySnapshot.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+      return products;
+    } on TFirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on TFormatException catch (_) {
+      throw const TFormatException();
+    } on TPlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
 
 
   /// Upload dummy data to the cloud

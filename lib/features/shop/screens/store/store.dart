@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/t_appbar.dart';
 import 'package:t_store/common/widgets/appbar/tabbar.dart';
 import 'package:t_store/common/widgets/brands/brand_card.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:t_store/common/widgets/shimmers/brand_shimmer.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/features/shop/controllers/brand_controller.dart';
 import 'package:t_store/features/shop/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -17,11 +20,13 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brandController = Get.put(BrandController());
     final categories = CategoryController.instance.featuredCategories;
 
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
+        /// App Bar
         appBar: TAppBar(
           title: Text(
             'Store',
@@ -30,6 +35,7 @@ class StoreScreen extends StatelessWidget {
           actions: [TCartCounterIcon(onPressed: () {})],
         ),
         body: NestedScrollView(
+          /// Header
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
               SliverAppBar(
@@ -46,7 +52,7 @@ class StoreScreen extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      // search
+                      /// Search Bar
                       const SizedBox(width: TSizes.spaceBtwItems),
                       const TSearchContainer(
                         text: 'Search in Store',
@@ -56,32 +62,53 @@ class StoreScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: TSizes.spaceBtwSections),
 
-                      // featured brands
+                      /// Featured brands
                       TSectionHeading(
-                        title: 'Featured Brand',
+                        title: 'Featured Brands',
                         onPressed: () {},
                       ),
                       const SizedBox(height: TSizes.spaceBtwItems / 1.5),
 
-                      // brands grid
-                      TGridLayout(
-                          itemCount: 4,
+                      /// Brands grid
+                      Obx(() {
+                        if (brandController.isLoading.value) return const TBrandShimmer();
+
+
+                        if (brandController.featuredBrands.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No data found!',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .apply(color: Colors.white),
+                            ),
+                          );
+                        }
+                        return TGridLayout(
+                          itemCount: brandController.featuredBrands.length,
                           mainAxisExtent: 80,
                           itemBuilder: (_, index) {
-                            return const TBrandCard(showBorder: true);
-                          }),
+                            final brand = brandController.featuredBrands[index];
+                            return TBrandCard(showBorder: true, brand: brand);
+                          },
+                        );
+                      })
                     ],
                   ),
                 ),
                 bottom: TTabBar(
-                  tabs: categories.map((category) => Tab(child: Text(category.name))).toList()
-                ),
+                    tabs: categories
+                        .map((category) => Tab(child: Text(category.name)))
+                        .toList()),
               )
             ];
           },
           // body
           body: TabBarView(
-            children: categories.map((category) => TCategoryTab(category: category)).toList(),
+            children: categories
+                .map((category) => TCategoryTab(category: category))
+                .toList(),
           ),
         ),
       ),
