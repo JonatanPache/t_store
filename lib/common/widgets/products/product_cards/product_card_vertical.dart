@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/styles/shadows.dart';
+import 'package:t_store/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
@@ -9,7 +10,6 @@ import 'package:t_store/features/shop/screens/product_details/product_detail.dar
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
-import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/utils/constants/enums.dart';
@@ -40,7 +40,7 @@ class TProductCardVertical extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // thumbnail  wishlist button discount tag
+            /// Thumbnail  wishlist button discount tag
             TRoundedContainer(
               height: 180,
               width: 180,
@@ -48,7 +48,7 @@ class TProductCardVertical extends StatelessWidget {
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
-                  // thumbnail image
+                  /// Thumbnail image
                   Center(
                     child: TRoundedImage(
                       imageUrl: product.thumbnail,
@@ -57,7 +57,7 @@ class TProductCardVertical extends StatelessWidget {
                     ),
                   ),
 
-                  // Sale Tag
+                  /// Sale Tag
                   Positioned(
                     top: 12,
                     child: TRoundedContainer(
@@ -75,21 +75,17 @@ class TProductCardVertical extends StatelessWidget {
                     ),
                   ),
 
-                  // favorite icon
-                  const Positioned(
-                    top: 0,
-                    right: 0,
-                    child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
-                    ),
-                  ),
+                  /// Favorite icon
+                  Positioned(
+                      top: 0,
+                      right: 0,
+                      child: TFavouriteIcon(productId: product.id)),
                 ],
               ),
             ),
             const SizedBox(height: TSizes.spaceBtwItems / 2),
 
-            // details
+            /// Details
             Padding(
               padding: const EdgeInsets.only(left: TSizes.sm),
               // wrap with sized box because of make the column full width
@@ -109,11 +105,11 @@ class TProductCardVertical extends StatelessWidget {
             // add spacer to keep the height of each box
             const Spacer(),
 
-            // row price
+            /// Row price
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // price
+                /// Price
                 Flexible(
                   child: Column(
                     children: [
@@ -131,7 +127,7 @@ class TProductCardVertical extends StatelessWidget {
                           ),
                         ),
 
-                      /// price show sale price as main price if sale exist
+                      /// Price show sale price as main price if sale exist
                       Padding(
                         padding: const EdgeInsets.only(left: TSizes.sm),
                         child: TProductPriceText(
@@ -142,7 +138,7 @@ class TProductCardVertical extends StatelessWidget {
                   ),
                 ),
 
-                // add cart
+                /// Add cart
                 Container(
                   decoration: const BoxDecoration(
                     color: TColors.dark,

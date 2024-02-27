@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:t_store/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/common/widgets/images/rounded_image.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:t_store/common/widgets/icons/t_circular_icon.dart';
 import 'package:t_store/common/widgets/texts/product_price_text.dart';
 import 'package:t_store/common/widgets/texts/product_title_text.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
@@ -25,14 +25,14 @@ class TProductCardHorizontal extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // thumbnail
+          /// Thumbnail
           TRoundedContainer(
             height: 120,
             padding: const EdgeInsets.all(TSizes.sm),
             backgroundColor: dark ? TColors.dark : TColors.light,
             child: Stack(
               children: [
-                // thumbnail image
+                /// Thumbnail image
                 const SizedBox(
                   width: 120,
                   height: 120,
@@ -42,7 +42,7 @@ class TProductCardHorizontal extends StatelessWidget {
                   ),
                 ),
 
-                // Sale Tag
+                /// Sale Tag
                 Positioned(
                   top: 12,
                   child: TRoundedContainer(
@@ -60,19 +60,17 @@ class TProductCardHorizontal extends StatelessWidget {
                   ),
                 ),
 
-                // favorite icon
+                /// Favorite icon
                 const Positioned(
-                    top: 0,
-                    right: 0,
-                    child: TCircularIcon(
-                      icon: Icons.heart_broken,
-                      color: Colors.red,
-                    ))
+                  top: 0,
+                  right: 0,
+                  child: TFavouriteIcon(productId: '',)
+                )
               ],
             ),
           ),
 
-          // details
+          /// Details
           SizedBox(
             width: 172,
             child: Padding(
@@ -96,7 +94,9 @@ class TProductCardHorizontal extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // price, flexible because lenght of the price
-                      const Flexible(child: TProductPriceText(price: '256.0'),),
+                      const Flexible(
+                        child: TProductPriceText(price: '256.0'),
+                      ),
 
                       // add to cart
                       Container(
