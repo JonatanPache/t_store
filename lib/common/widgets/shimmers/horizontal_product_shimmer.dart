@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/shimmers/shimmer.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 

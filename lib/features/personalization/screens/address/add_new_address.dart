@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/t_appbar.dart';
 import 'package:t_store/features/personalization/controllers/address_controller.dart';

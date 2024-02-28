@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:t_store/common/widgets/loaders/circular_loader.dart';
 import 'package:t_store/data/repositories/address/address_repository.dart';
 import 'package:t_store/features/personalization/models/address_model.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
@@ -54,7 +53,7 @@ class AddressController extends GetxController {
         onWillPop: () async {return false;},
         barrierDismissible: false,
         backgroundColor: Colors.transparent,
-        // content: const TCircularLoader()
+        content: const TCircularLoader()
       );
 
       /// clear the selected field
