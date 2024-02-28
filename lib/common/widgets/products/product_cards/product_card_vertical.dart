@@ -40,7 +40,7 @@ class TProductCardVertical extends StatelessWidget {
         ),
         child: Column(
           children: [
-            /// Thumbnail  wishlist button discount tag
+            /// Thumbnail, Wishlist Button, Discount tag
             TRoundedContainer(
               height: 180,
               width: 180,
@@ -48,7 +48,7 @@ class TProductCardVertical extends StatelessWidget {
               backgroundColor: dark ? TColors.dark : TColors.light,
               child: Stack(
                 children: [
-                  /// Thumbnail image
+                  /// Thumbnail Image
                   Center(
                     child: TRoundedImage(
                       imageUrl: product.thumbnail,
@@ -58,22 +58,23 @@ class TProductCardVertical extends StatelessWidget {
                   ),
 
                   /// Sale Tag
-                  Positioned(
-                    top: 12,
-                    child: TRoundedContainer(
-                      radius: TSizes.sm,
-                      backgroundColor: TColors.secondary.withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: TSizes.sm, vertical: TSizes.xs),
-                      child: Text(
-                        '$salePercentage%',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge!
-                            .apply(color: TColors.black),
+                  if (salePercentage != null)
+                    Positioned(
+                      top: 12,
+                      child: TRoundedContainer(
+                        radius: TSizes.sm,
+                        backgroundColor: TColors.secondary.withOpacity(0.8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: TSizes.sm, vertical: TSizes.xs),
+                        child: Text(
+                          '$salePercentage%',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelLarge!
+                              .apply(color: TColors.black),
+                        ),
                       ),
                     ),
-                  ),
 
                   /// Favorite icon
                   Positioned(
@@ -102,7 +103,7 @@ class TProductCardVertical extends StatelessWidget {
               ),
             ),
 
-            // add spacer to keep the height of each box
+            /// add spacer to keep the height of each box
             const Spacer(),
 
             /// Row price

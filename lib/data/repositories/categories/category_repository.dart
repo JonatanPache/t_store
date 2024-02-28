@@ -6,13 +6,13 @@ import 'package:t_store/utils/exceptions/firebase_exception.dart';
 import 'package:t_store/utils/exceptions/format_exceptions.dart';
 import 'package:t_store/utils/exceptions/platform_exceptions.dart';
 
-/// Repository class for user-related operations.
+/// Repository class for category-related operations.
 class CategoryRepository extends GetxController {
   static CategoryRepository get instance => Get.find();
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  /// Get all categories
+  /// Get All Categories
   Future<List<CategoryModel>> getAllCategories() async {
     try {
       final snapshot = await _db.collection('Categories').get();
@@ -30,13 +30,13 @@ class CategoryRepository extends GetxController {
     }
   }
 
-  /// Get sub categories
-  Future<List<CategoryModel>> getSubCategories() async {
+  /// Get Sub Categories
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
     try {
-      final snapshot = await _db.collection('Categories').get();
-      final list = snapshot.docs.map((document) =>
+      final snapshot = await _db.collection('Categories').where('ParentId',isEqualTo: categoryId).get();
+      final result = snapshot.docs.map((document) =>
           CategoryModel.fromSnapshot(document)).toList();
-      return list;
+      return result;
     } on TFirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on TFormatException catch (_) {
