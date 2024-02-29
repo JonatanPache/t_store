@@ -31,6 +31,10 @@ class TLocalStorage {
     return _storage.read<T>(key);
   }
 
+  // Generic method to write data
+  Future<void> writeData<T>(String key, T value) async{
+    await _storage.write(key, value);
+  }
 
   /// Generic method to remove data
   Future<void> removeData(String key) async {

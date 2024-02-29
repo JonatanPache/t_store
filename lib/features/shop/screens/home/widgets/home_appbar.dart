@@ -26,28 +26,29 @@ class THomeAppBar extends StatelessWidget {
           ),
           Obx(
             () {
-              if (controller.profileLoading.value){
+              if (controller.profileLoading.value) {
                 // Display a shimmer loader while user profile is being loader
-                return const TShimmerEffect(width: 80,height: 15);
+                return const TShimmerEffect(width: 80, height: 15);
               } else {
                 return Text(
                   controller.user.value.fullName,
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .headlineSmall!
                       .apply(color: TColors.white),
                 );
               }
-            }
+            },
           )
         ],
       ),
-      // tcartcountericon is not finished
-      actions: [
+
+      // Cart Counter Icon is not finished
+      actions: const [
         TCartCounterIcon(
-          onPressed: () {},
           iconColor: TColors.white,
+          counterBgColor: TColors.black,
+          counterTextColor: TColors.white,
         )
       ],
     );

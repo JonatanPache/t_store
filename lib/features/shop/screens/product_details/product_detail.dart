@@ -22,14 +22,14 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// 1 Product image slider
             TProductImageSlider(product: product),
 
-            /// 2 Product details
+            /// 2 Product Details
             Padding(
               padding: const EdgeInsets.only(
                 right: TSizes.defaultSpace,

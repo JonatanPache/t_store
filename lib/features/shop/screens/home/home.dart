@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header
+            /// Header
             const TPrimaryHeaderContainer(
               child: Column(
                 children: [
