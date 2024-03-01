@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/circular_loader.dart';
+import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/data/repositories/address/address_repository.dart';
 import 'package:t_store/features/personalization/models/address_model.dart';
+import 'package:t_store/features/personalization/screens/address/add_new_address.dart';
+import 'package:t_store/features/personalization/screens/address/widgets/single_address.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
+import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
 import 'package:t_store/utils/network/network_manager.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
 import 'package:t_store/utils/popups/loaders.dart';
@@ -49,12 +54,13 @@ class AddressController extends GetxController {
   Future selectAddress(AddressModel newSelectedAddress) async {
     try {
       Get.defaultDialog(
-        title: '',
-        onWillPop: () async {return false;},
-        barrierDismissible: false,
-        backgroundColor: Colors.transparent,
-        content: const TCircularLoader()
-      );
+          title: '',
+          onWillPop: () async {
+            return false;
+          },
+          barrierDismissible: false,
+          backgroundColor: Colors.transparent,
+          content: const TCircularLoader());
 
       /// clear the selected field
       if (selectedAddress.value.id.isNotEmpty) {
@@ -71,8 +77,6 @@ class AddressController extends GetxController {
           selectedAddress.value.id, true);
 
       Get.back();
-
-
     } catch (e) {
       TLoaders.errorSnackBar(
           title: 'Error in Selection', message: e.toString());
@@ -100,17 +104,17 @@ class AddressController extends GetxController {
       }
 
       final address = AddressModel(
-        id: '',
-        name: name.text.trim(),
-        phoneNumber: phoneNumber.text.trim(),
-        street: street.text.trim(),
-        city: city.text.trim(),
-        state: state.text.trim(),
-        postalCode: postalCode.text.trim(),
-        country: country.text.trim(),
-        selectedAddress: true
-      );
+          id: '',
+          name: name.text.trim(),
+          phoneNumber: phoneNumber.text.trim(),
+          street: street.text.trim(),
+          city: city.text.trim(),
+          state: state.text.trim(),
+          postalCode: postalCode.text.trim(),
+          country: country.text.trim(),
+          selectedAddress: true);
       final id = await addressRepository.addAddress(address);
+
       /// Update selected address
       address.id = id;
 
@@ -118,7 +122,9 @@ class AddressController extends GetxController {
       TFullScreenLoader.stopLoading();
 
       /// show success message
-      TLoaders.successSnackBar(title: 'Congratulations', message: 'Your address has been saved successfully.');
+      TLoaders.successSnackBar(
+          title: 'Congratulations',
+          message: 'Your address has been saved successfully.');
 
       /// refresh addressees data
       refreshData.toggle();
@@ -128,15 +134,13 @@ class AddressController extends GetxController {
 
       /// redirect
       Navigator.of(Get.context!).pop();
-
     } catch (e) {
-      TLoaders.errorSnackBar(
-          title: 'Address not found', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Address not found', message: e.toString());
     }
   }
 
   /// reset form
-  void resetFormField(){
+  void resetFormField() {
     name.clear();
     phoneNumber.clear();
     street.clear();
@@ -145,5 +149,54 @@ class AddressController extends GetxController {
     state.clear();
     country.clear();
     addressFormKey.currentState?.reset();
+  }
+
+  Future<dynamic> selectNewAddresPopup(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (_) => SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(TSizes.lg),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const TSectionHeading(
+                        title: 'Select Address', showActionButton: false),
+                    FutureBuilder(
+                      future: getAllUserAddresses(),
+                      builder: (_, snapshot) {
+                        final response =
+                            TCloudHelperFunctions.checkMultiRecordState(
+                                snapshot: snapshot);
+                        if (response != null) return response;
+
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (_, index) => TSingleAddress(
+                            address: snapshot.data![index],
+                            onTap: () async {
+                              await selectAddress(snapshot.data![index]);
+                              Get.back();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: TSizes.defaultSpace * 2),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        child: const Text('Add new address'),
+                        onPressed: () => Get.to(
+                          () => const AddNewAddressScreen(),
+                        ),
+                        
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ));
   }
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:t_store/common/widgets/appbar/t_appbar.dart';
 import 'package:t_store/common/widgets/products/sortable/sortable_products.dart';
 import 'package:t_store/common/widgets/shimmers/vertical_product_shimmer.dart';
-import 'package:t_store/features/shop/controllers/product/all_products_controller.dart';
+import 'package:t_store/features/shop/controllers/all_products_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/helpers/cloud_helper_functions.dart';
 

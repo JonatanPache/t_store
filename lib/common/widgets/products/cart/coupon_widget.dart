@@ -16,13 +16,10 @@ class TCouponCode extends StatelessWidget {
       showBorder: true,
       backgroundColor: dark ? TColors.dark : TColors.white,
       padding: const EdgeInsets.only(
-          top: TSizes.sm,
-          bottom: TSizes.sm,
-          right: TSizes.sm,
-          left: TSizes.md),
+          top: TSizes.sm, bottom: TSizes.sm, right: TSizes.sm, left: TSizes.md),
       child: Row(
         children: [
-          // textField
+          /// TextField
           Flexible(
             child: TextFormField(
               decoration: const InputDecoration(
@@ -36,15 +33,19 @@ class TCouponCode extends StatelessWidget {
             ),
           ),
 
-          // button
+          /// Button
           SizedBox(
             width: 80,
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                  foregroundColor: dark ? TColors.white.withOpacity(0.5) : TColors.dark.withOpacity(0.5),
-                  backgroundColor: TColors.grey.withOpacity(0.2),
-                  side: BorderSide(color: Colors.grey.withOpacity(0.1))
+                foregroundColor: dark
+                    ? TColors.white.withOpacity(0.5)
+                    : TColors.dark.withOpacity(0.5),
+                backgroundColor: TColors.grey.withOpacity(0.2),
+                side: BorderSide(
+                  color: Colors.grey.withOpacity(0.1),
+                ),
               ),
               child: const Text('Apply'),
             ),
